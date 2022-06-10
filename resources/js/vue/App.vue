@@ -1,8 +1,9 @@
 <script setup>
     import { RouterLink } from 'vue-router';
     import { RouterView } from 'vue-router';
+    import HomeVue from './pages/Home.vue';
 </script>
 
 <template>
-   <p class="text-blue-600">Hello world</p>
+        <router-view />
 </template>

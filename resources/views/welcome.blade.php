@@ -8,7 +8,7 @@
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <title>Laravel Vue Setup</title>
 </head>
-<body>
+<body class="bg-kappa w-full">
     <div id="app">
         
     </div>

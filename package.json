@@ -19,7 +19,12 @@
         "vue-loader": "^16.8.3"
     },
     "dependencies": {
+        "@fortawesome/fontawesome-svg-core": "^6.1.1",
+        "@fortawesome/free-regular-svg-icons": "^6.1.1",
+        "@fortawesome/free-solid-svg-icons": "^6.1.1",
+        "@fortawesome/vue-fontawesome": "^3.0.0-5",
         "vue": "^3.2.37",
-        "vue-router": "^4.0.15"
+        "vue-router": "^4.0.15",
+        "vue-window-size": "^0.6.2"
     }
 }

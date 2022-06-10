@@ -6,7 +6,12 @@ module.exports = {
     "./resources/**/*.vue",
   ],
   theme: {
-    extend: {},
+    extend: {
+      // backgroundImage: {
+      //   'kappa': "url('./public/images/samuraiGirl.jpg')",
+
+      // }
+    },
   },
   plugins: [],
 }
