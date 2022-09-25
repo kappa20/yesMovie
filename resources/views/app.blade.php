@@ -3,8 +3,12 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>How To Install Vue 3 in Laravel 9 with Vite</title>
-
+	<title>YesMovie</title>
+	<style>
+		body{
+			font-family: Arial, Helvetica, sans-serif;
+		}
+	</style>
 	@vite('resources/css/app.css')
 </head>
 <body>
