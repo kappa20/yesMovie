@@ -1,9 +1,8 @@
 <template>
-    <p>page : {{home}}</p>
+    <Navbar />
 </template>
 
 
 <script setup>
-    import {ref} from "vue";
-    const home = ref("home");
+    import Navbar from "../components/navbar.vue"
 </script>

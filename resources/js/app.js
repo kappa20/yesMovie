@@ -4,7 +4,7 @@ import '../css/app.css';
 
 import App from './App.vue'
 import router from "./router";
-
+import Navbar from "./components/navbar.vue"
 const app = createApp(App)
 // app.config.errorHandler = (err) => {
 //     /* handle error */

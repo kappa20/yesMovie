@@ -5,7 +5,7 @@ import vue from '@vitejs/plugin-vue'
 
 export default defineConfig({
     plugins: [
-        vue({
+        vue(/* {
             template: {
                 transformAssetUrls: {
                     // The Vue plugin will re-write asset URLs, when referenced
@@ -21,8 +21,13 @@ export default defineConfig({
                     // reference assets in the public directory as expected.
                     includeAbsolute: false,
                 },
+                compilerOptions: {
+                    isCustomElement: (tag) => {
+                      return tag.startsWith('ion-') // (return true)
+                    }
+                  }
             },
-        }),
+        } */),
         laravel([
             // 'resources/css/app.css',
             'resources/js/app.js',

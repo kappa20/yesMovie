@@ -1,9 +1,8 @@
 <template>
-    <Navbar />
-
+    <Home />
 </template>
 
 
 <script setup>
-    import Navbar from "./components/navbar.vue"
+    import Home from "./pages/home.vue"
 </script>

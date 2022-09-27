@@ -7,6 +7,7 @@
 	<style>
 		body{
 			font-family: Arial, Helvetica, sans-serif;
+			background:url('images/poster.jpeg');
 		}
 	</style>
 	@vite('resources/css/app.css')
