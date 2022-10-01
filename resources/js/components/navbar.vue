@@ -1,5 +1,5 @@
 <template>
-    <nav class="bg-[#323232] h-[50px] md:h-[60px] lg:h-[70px] w-screen flex flex-row items-center justify-between p-3">
+    <nav class="bg-[#323232] h-[50px] md:h-[60px] lg:h-[70px] w-screen flex flex-row items-center justify-between">
         <!-- Menu Mobile -->
         <div class="flex flex-row gap-4 items-center lg:hidden">
             <div class="py-[4px] pb-[6px] px-[5px] rounded-sm" @click="isMenuActive = !isMenuActive;isSearchActive=false" :class="{ active : isMenuActive}">
@@ -10,17 +10,15 @@
            
         </div>
         <!-- Logo -->
-        <div id="logo" class="relative left-[4vw] lg:static">
-                <img class="h-[25px] md:h-[38px]" src="/images/logo-m.png" alt="Logo">
-        </div>
+        <div id="logo" class="relative left-[4vw] lg:static flex items-center lg:gap-5 h-full">
+            <div class="lg:px-4 h-full flex items-center" :class="[windowSize < 1280 ? '':'shadow-header']">
+                <img class="h-[25px] md:h-[38px] "  :src="[windowSize < 1280 ? '/images/logo-m.png':'/images/logo.png']" alt="Logo" />
+            </div>
+                <ul class=" hidden w-auto lg:flex lg:gap-5 lg:items-center ">
+                    <li class="text-gray-500" v-for="(genre,id) in genres" :key="id">
 
-        <Transition name="fade">
-           
-                <ul class="border border-blue-600 w-auto flex justify-between gap-2">
-                    <li class="border text-gray-500" v-for="(genre,id) in genres" :key="id">
-
-                        <div class="w-5 h-5 mx-auto">
-                                <Svgs name="house" color="currentColor"/>
+                        <div class="w-[20px] h-[20px] mx-auto">
+                                <Svgs :name="genre[2]" color="currentColor"/>
                         </div>
                         <a href="#" class="text-[#C91C55] lg:text-gray-500 text-xs" >{{genre[0]}}</a>
                         
@@ -35,8 +33,13 @@
                     </li>
                     
                 </ul>
+        </div>
+
+        <!-- <Transition name="fade"> -->
+           
+                
             
-        </Transition>
+        <!-- </Transition> -->
 
         <div class="flex flex-row gap-2 items-center">
                 <div id="search" class=" lg:hidden w-7 h-7 md:w-6 md:h-6 cursor-pointer p-1 rounded-sm" @click="isSearchActive = !isSearchActive;isMenuActive = false" :class="{ active : isSearchActive}">
@@ -90,7 +93,7 @@
 
         </Transition>
         
-        <!-- <Transition name="fade">
+        <Transition name="fade">
             <div id="menu" v-show="isMenuActive" class="absolute top-[50px] md:top-[60px] bg-[#222222] left-0 w-screen">
                 <ul class="w-screen drop-shadow-md">
                     <li v-for="(genre,id) in genres" :key="id">
@@ -107,7 +110,7 @@
                     
                 </ul>
             </div>
-        </Transition> -->
+        </Transition>
         
         
     </nav>
@@ -261,13 +264,13 @@ import Svgs1 from "./svgs.vue";
 
     const isLoginTab = ref(true);
     const genres = ref([
-        ["Home",[]],
+        ["Home",[],"house"],
         ["Genre",["Action","Adventure","Animation","Biography","Comdey","Costume","Crime","Documentary","Drama",
-    "Family","Fantasy","History"]],
-    ["Country",["Asia","China","Euro","France","HongKong","India","Interantional","Japan","Korea"]],
-    ["Movies",[]],
-    ["Tv-Series",[]],
-    ["Top IMDB",[]]
+    "Family","Fantasy","History"],"play-circle"],
+    ["Country",["Asia","China","Euro","France","HongKong","India","Interantional","Japan","Korea"],"globe"],
+    ["Movies",[],"film"],
+    ["Tv-Series",[],"tv"],
+    ["Top IMDB",[],"flag"]
 ])
     const windowSize = ref(window.innerWidth);
     window.addEventListener('click',function(e){
@@ -333,5 +336,11 @@ import Svgs1 from "./svgs.vue";
         transform: translateY(-50px);
     }
     
+}
+.shadow-header{
+    background: #c91c55 url('/images/logo-shadow.png') top center no-repeat;
+    z-index: 2;
+    font-size: 0;
+    margin: 0;
 }
 </style>
