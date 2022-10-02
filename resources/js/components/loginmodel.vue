@@ -1,10 +1,11 @@
 <template>
 
 <Transition name="fade">
-        <main v-show="show" class="absolute overflow-hidden z-50 p-[6px]  top-0 left-0 w-screen h-screen bg-black/90 grid place-items-center">
+        <main id="kappa"  v-show="props.modelValue" class="absolute overflow-hidden z-50 p-[6px]  top-0 left-0 w-screen h-screen bg-black/90 
+        grid place-items-center ">
             
-                <div id="test" class="w-full mt-[180px]  max-w-[430px] "
-                 :class="[show ? 'top_down' : 'down_top']">
+                <div  class="w-full relative top-[-15vh]  sm:max-w-[430px] "
+                 :class="[props.modelValue ? 'top_down' : 'down_top']">
 
                     <div class="grid grid-cols-3 mb-4 min-h-max relative">
 
@@ -43,7 +44,7 @@
 
                             <!--Clear Button (X)  -->
                             <div class="text-white flex items-center justify-self-end">
-                                <button class="w-3" @click="show=false;">
+                                <button class="w-3" @click="emit('update:modelValue')">
                                     <Svgs name="x" color="currentColor"/>
                                 </button>
                             </div>
@@ -51,7 +52,7 @@
                     </div>
 
                     <!-- tabs -->
-                    <div id="tabsContainer" class=" h-[500px] relative">
+                    <div id="tabsContainer" class="relative h-max">
                             
                             <!-- Login Tab -->
                             <div :class="[isLoginTab ? '':'scale-0 opacity-0']"  class="flex flex-col w-full
@@ -88,7 +89,7 @@
                             <div :class="[isLoginTab ? 'scale-0 opacity-0':'']"  id="registerTab" class="flex  flex-col 
                             transition-opacity delay-75  duration-500 ease-in-out gap-4 absolute top-0 left-0">
                                 <div  id="registrationTab" class="w-full bg-white  rounded-md p-5">
-                                        <form class="text-sm  flex flex-col gap-5" action="" method="Post">
+                                        <form class="text-sm  flex flex-col gap-3" action="" method="Post">
                                                 <div class="mb-2">
                                                     <p class="text-xs text-[#333]">
                                                         When becoming members of the site, 
@@ -116,11 +117,7 @@
                                                     <input class="w-full pb-2 relative z-10 outline-none border-b
                                                     border-b-[#666] transition-opacity focus:border-b-[#c91c55]" type="password" name="Rpassword" placeholder="Password">
                                                 </div>
-                                            
-
-                                                
-                                            
-                                            
+                                                                                                                                                                    
                                                 <button class="bg-[#c91c55] h-[44px] hover:opacity-90 text-white">Register</button>
                                         </form>
                                     </div>
@@ -137,22 +134,26 @@
         
     </main>
     </Transition>
-
+   
 
 </template>
 
 <script setup>
     import {ref} from "vue";
-    
+    import Svgs from "./svgs.vue";
     const isLoginTab = ref(true);   
     
-    // const props = defineProps(
-    //     {
-    //     name: String,
-    //     color:String
-    //     }
-    // )
+    const props = defineProps(['modelValue'])
+    const emit = defineEmits(['update:modelValue'])
 
+    window.addEventListener('click',function(e){
+       if(e.target.id == "kappa"){
+        emit('update:modelValue')
+       }
+       
+    })
+
+    
 
 </script>
 
