@@ -12,28 +12,32 @@
         </div>
         <!-- Logo -->
         <div id="logo" class="relative left-[4vw] lg:static flex items-center lg:gap-5 h-full">
+
             <div class="lg:px-4 h-full flex items-center" :class="[windowSize < 1280 ? '':'shadow-header']">
                 <img class="h-[25px] md:h-[38px] "  :src="[windowSize < 1280 ? '/images/logo-m.png':'/images/logo.png']" alt="Logo" />
             </div>
+
             <ul class="hidden w-auto  h-full lg:flex  lg:items-center ">
-                <li class="h-full cursor-pointer  relative" v-for="(genre,id) in genres" :key="id">
+                <li class="h-full cursor-pointer  relative" v-for="(value,genre,id) in genres" :key="id">
                     <div @mouseenter="show_subMenu(id)" 
                         @mouseleave="hide_subMenu(id)" class="text-gray-500  hover:text-gray-200 h-full
                         p-3">
 
                         <div class="w-[20px] h-[20px] mx-auto">
-                            <Svgs :name="genre[2]" color="currentColor"/>
+                            <Svgs :name="value.svg_code" color="currentColor"/>
                         </div>
-                        <a href="#" class="text-[#C91C55] lg:text-inherit  text-xs" >{{genre[0]}}</a>
+                        <a href="#" class="text-[#C91C55] lg:text-inherit  text-xs" >{{genre}}</a>
                     </div>
                     
                     
-                    <ul ref="sub_menus" @mouseenter="show_subMenu(id)"  @mouseleave="hide_subMenu(id)"  
-                    class="text-gray-200 hidden pt-5  ml-2 bg-black/80
-                        grid-cols-3  w-max absolute -z-[1000] top-[55px] left-0"
+                    <ul  ref="sub_menus" @mouseenter="show_subMenu(id)"  @mouseleave="hide_subMenu(id)"  
+                    class="text-gray-200 hidden  ml-2 bg-black/50
+                        grid-cols-3  w-max absolute z-[1000] top-[55px] left-0"
                       
                         >
-                        <template v-for="(sous_genre,idd) in genre[1]" :key="idd">
+                        <div title="nice trick" class="relative bg-[#323232] w-full h-[15px] col-span-3">   
+                        </div>
+                        <template v-for="(sous_genre,te) in value.data" :key="te">
                             <li class="text-[#CCCCCC]  hover:bg-[#C91C55] hover:text-white m-1 ">
                                 <a href="#" class="text-xs pl-2 pr-6">{{sous_genre}}</a>
                             </li>
@@ -90,37 +94,30 @@
     </nav>
     <!-- Login Model -->
     <loginmodel v-model="showLogin" @update:model-value="showLogin = false"></loginmodel>
+
     
 </template>
 
 
 <script setup>
     import Svgs from "./svgs.vue";
-    import {ref ,computed} from "vue";
+    import {ref ,computed,onMounted} from "vue";
     import loginmodel from "./loginmodel.vue";
     import MenuMobile from "./menuMobile.vue";
     import SearchMobile from "./searchMobile.vue";
-
+   
+    const props = defineProps(['genres'])
     const isMenuActive = ref(false)
     const isSearchActive = ref(false)
     const showLogin = ref(false);
     const sub_menus = ref([])
-    const genres = ref([
-        ["Home",[],"house"],
-        ["Genre",["Action","Adventure","Animation","Biography","Comdey","Costume","Crime","Documentary","Drama",
-    "Family","Fantasy","History","Horror","Kungfu","Musical","Mystery","Mythological","Psychological"],"play-circle"],
-    ["Country",["Asia","China","Euro","France","HongKong","India","Interantional","Japan","Korea"],"globe"],
-    ["Movies",[],"film"],
-    ["Tv-Series",[],"tv"],
-    ["Top IMDB",[],"flag"]
-])
+
+   
     const windowSize = ref(window.innerWidth);
-    
+   
     function show_subMenu(id){
        sub_menus.value[id].classList.remove("hidden")
        sub_menus.value[id].classList.add("grid")
-
-        console.log(id);
     }
     function hide_subMenu(id){
         sub_menus.value[id].classList.add("hidden")
@@ -137,6 +134,7 @@
 </script>
 
 <style scoped>
+    
     
     .active{
         background-color: #666666;
