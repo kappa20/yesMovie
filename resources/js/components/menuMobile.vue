@@ -1,17 +1,22 @@
 <template>
     <Transition name="fade">
-            <div id="menu" v-show="props.modelValue" class="absolute top-[50px] md:top-[60px] bg-[#222222] left-0 w-screen">
-                <ul class="w-screen drop-shadow-md">
-                    <li v-for="(genre,id) in props.genres" :key="id">
-                        <a href="#" class="text-[#C91C55] inline-block text-[14px] pl-2 py-2 font-semibold" >{{genre[0]}}</a>
-                        <ul  class="grid grid-cols-3">
-                            <template v-for="(sous_genre,idd) in genre[1]" :key="idd">
-                                <li >
-                                    <a href="#" class="text-[#CCCCCC] text-xs pl-2">{{sous_genre}}</a>
+            <div id="menu" v-show="props.modelValue" class="absolute   top-[50px] md:top-[60px] bg-[#222222] left-0 w-screen">
+                <ul class="w-full drop-shadow-md pt-2 px-4">
+                    <li v-for="(value,genre) in props.genres" :key="id" class="text-[#C91C55] hover:text-white">
+                        <a href="#" class="text-inherit inline-block text-[14px]  py-2 font-semibold" >{{genre}}</a>
+                        <ul  class="grid grid-cols-3 gap-4 sm:grid-cols-4 sm:gap-5 mb-3">
+                            <template v-for="(sous_genre) in value.data" :key="idd">
+                                <li class="h-max sm:bg-[#282828] sm:hover:bg-[#C91C55] sm:py-1 cursor-pointer">
+                                    <a href="#" class="text-[#CCCCCC] 
+                                     hover:text-white sm:inline-block  
+                                      sm:h-full  sm:w-full
+                                        text-xs pl-2">{{sous_genre}}</a>
                                 </li>
                             </template>
-                            <div class="border-b-[1px] w-screen border-gray-50/10 lg:hidden"></div>
+                           
                         </ul>
+                        <div class="border-b-[1px] w-full border-gray-50/10 
+                            lg:hidden"></div>
                     </li>
                     
                 </ul>

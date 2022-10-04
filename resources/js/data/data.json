@@ -1,0 +1,28 @@
+{
+    "Home":{
+        "data":[],
+        "svg_code":"house"
+    },
+    "Genre":{
+        "data":["Action","Adventure","Animation","Biography","Comdey","Costume","Crime","Documentary","Drama",
+        "Family","Fantasy","History","Horror","Kungfu","Musical","Mystery","Mythological","Psychological"],
+        "svg_code":"play-circle"
+    },
+    "Country":{
+        "data":["Asia","China","Euro","France","HongKong","India","Interantional","Japan","Korea"],
+        "svg_code":"globe"
+    },
+    "Movies":{
+        "data":[],
+        "svg_code":"film"
+    }
+    ,
+    "Tv-Series":{
+        "data":[],
+        "svg_code":"tv"
+    },
+    "Top IMDB":{
+        "data":[],
+        "svg_code":"flag"
+    }
+}
